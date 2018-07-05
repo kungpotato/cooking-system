@@ -3,7 +3,7 @@ import Api from '@/services/Api'
 
 export default {
   register (credentials) {
-    // return axios.post('http://localhost:8081/register', credentials)
+    // return axios.post('http://localhost:8000/register', credentials)
     return Api().post('/register', credentials)
   }
 }
