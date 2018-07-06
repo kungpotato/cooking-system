@@ -5,5 +5,9 @@ export default {
   register (credentials) {
     // return axios.post('http://localhost:8000/register', credentials)
     return Api().post('/register', credentials)
+  },
+  login (credentials) {
+    // return axios.post('http://localhost:8000/register', credentials)
+    return Api().post('/login', credentials)
   }
 }

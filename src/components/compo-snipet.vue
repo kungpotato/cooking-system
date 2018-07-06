@@ -1,14 +1,10 @@
 <template>
-
-  <section class="register">
-    <h1>register Component</h1>
-  </section>
-
+  <div>work!</div>
 </template>
 
-<script lang="js">
+<script>
 export default {
-  name: 'register',
+  name: '',
   data () {
     return {}
   }
