@@ -2,12 +2,11 @@
   <v-container grid-list-xl text-xs-center>
     <v-layout row wrap>
       <v-flex xs10 offset-xs1>
-        <div class="white elevation-2">
-          <v-toolbar flat dense class="teal" dark>
-            <v-toolbar-title>Register</v-toolbar-title>
-          </v-toolbar>
-
-          <div class="pl-4 pr-4 pt-2 pb-2">
+        <panel title="Register">
+          <form
+            name="cooking-form"
+            autocomplete="off"
+          >
             <v-text-field
               label="Email"
               v-model="email"
@@ -17,15 +16,17 @@
               v-model="password"
             /><br/>
             <div class="error" v-html="error"></div><br/>
-            <v-btn class="teal" @click="register">Register</v-btn>
-          </div>
-        </div>
+            <v-btn class="teal" @click="register" dark>Register</v-btn>
+          </form>
+        </panel>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
+
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
+import Panel from './Panel'
 export default {
   name: 'register',
   data () {
@@ -48,6 +49,9 @@ export default {
         this.error = error.response.data.error
       }
     }
+  },
+  components: {
+    Panel
   }
 }
 </script>

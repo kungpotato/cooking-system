@@ -34,4 +34,7 @@ export default {
 .v-text-field input {
   border-bottom:1px solid black
 }
+.danger-alert {
+  color: red
+}
 </style>
