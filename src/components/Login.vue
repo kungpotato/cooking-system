@@ -26,7 +26,6 @@
 </template>
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
-import Panel from './Panel'
 export default {
   name: 'login',
   data () {
@@ -49,9 +48,6 @@ export default {
         this.error = error.response.data.error
       }
     }
-  },
-  components: {
-    Panel
   }
 }
 </script>

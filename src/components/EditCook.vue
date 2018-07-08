@@ -40,7 +40,7 @@
       <div class="danger-alert" v-if="error">
         {{error}}
       </div>
-      <v-btn class="teal" dark @click="create">Create Cooking</v-btn>
+      <v-btn class="teal" dark @click="save">Save</v-btn>
     </v-flex>
   </v-layout>
 </template>
@@ -64,7 +64,7 @@ export default {
     }
   },
   methods: {
-    async create () {
+    async save () {
       this.error = null
       const areAllFieldsFilledIn = Object
         .keys(this.cook)
@@ -73,14 +73,26 @@ export default {
         this.error = 'Please fill in all the required field'
         return
       }
+      const cookId = this.$store.state.route.params.cookId
       try {
-        await CookingService.post(this.cook)
+        await CookingService.put(this.cook)
         this.$router.push({
-          name: 'cook'
+          name: 'cooking',
+          params: {
+            cookId: cookId
+          }
         })
       } catch (err) {
         console.log(err)
       }
+    }
+  },
+  async mounted () {
+    try {
+      const cookId = this.$store.state.route.params.cookId
+      this.cook = (await CookingService.show(cookId)).data
+    } catch (err) {
+      console.log(err)
     }
   }
 }

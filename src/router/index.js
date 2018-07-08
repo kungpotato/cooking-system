@@ -2,9 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Register from '@/components/Register'
 import Login from '@/components/Login'
-import Cook from '@/components/Cook'
+import Cook from '@/components/cook/Index'
 import CreateCook from '@/components/CreateCook'
-import Cooking from '@/components/Cooking'
+import EditCook from '@/components/EditCook'
+import Cooking from '@/components/viewcook/Index'
 
 Vue.use(Router)
 
@@ -33,6 +34,11 @@ export default new Router({
       path: '/cook/create',
       name: 'cook-create',
       component: CreateCook
+    },
+    {
+      path: '/cook/:cookId/edit',
+      name: 'cook-edit',
+      component: EditCook
     },
     {
       path: '/cook/:cookId',

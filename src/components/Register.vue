@@ -26,7 +26,6 @@
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
-import Panel from './Panel'
 export default {
   name: 'register',
   data () {
@@ -49,15 +48,12 @@ export default {
         this.error = error.response.data.error
       }
     }
-  },
-  components: {
-    Panel
   }
 }
 </script>
 
 <style scoped>
 .error {
-  color: red;
+  color: black;
 }
 </style>
