@@ -12,10 +12,6 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'root'
-    },
-    {
       path: '/register',
       name: 'register',
       component: Register
@@ -44,6 +40,10 @@ export default new Router({
       path: '/cook/:cookId',
       name: 'cooking',
       component: Cooking
+    },
+    {
+      path: '*',
+      redirect: 'cook'
     }
   ]
 })

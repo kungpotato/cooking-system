@@ -15,7 +15,7 @@
               label="Password"
               v-model="password"
             /><br/>
-            <div class="error" v-html="error"></div><br/>
+            <div class="danger-alert" v-html="error"></div><br/>
             <v-btn class="teal" @click="register" dark>Register</v-btn>
           </form>
         </panel>
@@ -44,6 +44,9 @@ export default {
         })
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.User)
+        this.$router.push({
+          name: 'cook'
+        })
       } catch (error) {
         this.error = error.response.data.error
       }
@@ -53,7 +56,4 @@ export default {
 </script>
 
 <style scoped>
-.error {
-  color: black;
-}
 </style>

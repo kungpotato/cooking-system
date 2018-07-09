@@ -21,11 +21,6 @@ export default {
       cooks: null
     }
   },
-  methods: {
-    navigateTo (route) {
-      this.$router.push(route)
-    }
-  },
   async mounted () {
     // ส่ง request ไป backend เพื่อขอวิธีทำอาหารทั้งหมด
     this.cooks = (await CookingService.index()).data

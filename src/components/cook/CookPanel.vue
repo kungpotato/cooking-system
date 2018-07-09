@@ -25,10 +25,10 @@
           <v-btn
             class="teal"
             dark
-            @click="navigateTo({
+            :to="{
               name: 'cooking',
               params: {cookId: cook.id}
-            })"
+            }"
           >View</v-btn>
         </v-flex>
         <v-flex xs6>
@@ -45,11 +45,6 @@ export default {
   data () {
     return {
       cooks: null
-    }
-  },
-  methods: {
-    navigateTo (route) {
-      this.$router.push(route)
     }
   },
   watch: {

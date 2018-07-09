@@ -18,11 +18,25 @@
           <v-btn
             class="teal"
             dark
-            @click="navigateTo({
+            :to="{
               name: 'cook-edit',
-              params: {cookId: cook.id}
-            })"
+              params () {
+                return {cookId: cook.id}
+              }
+            }"
           >Edit</v-btn>
+          <v-btn
+            v-if="isUserLoggedIn && !isBookmarked"
+            class="teal"
+            dark
+            @click="bookmark"
+          >Bookmark</v-btn>
+          <v-btn
+            v-if="isUserLoggedIn && isBookmarked"
+            class="teal"
+            dark
+            @click="unBookmark"
+          >UnBookmark</v-btn>
         </v-flex>
       </v-layout>
     </div>
@@ -30,13 +44,58 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import BookmarksService from '@/services/BookmarksService'
 export default {
   props: [
     'cook'
   ],
+  data () {
+    return {
+      isBookmarked: false
+    }
+  },
+  computed: {
+    ...mapState([
+      'isUserLoggedIn'
+    ])
+  },
+  async mounted () {
+    if (!this.isUserLoggedIn) {
+      return
+    }
+    try {
+      const bookmark = (await BookmarksService.index({
+        cookId: this.cook.id,
+        userId: this.$store.state.user.id
+      })).data
+      this.isBookmarked = !!bookmark
+    } catch (err) {
+      console.log(err)
+    }
+  },
   methods: {
-    navigateTo (route) {
-      this.$router.push(route)
+    async bookmark () {
+      try {
+        const bookmark = (await BookmarksService.post({
+          cookId: this.cook.id,
+          userId: this.$store.state.user.id
+        })).data
+        this.isBookmarked = !!bookmark
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    async unBookmark () {
+      try {
+        const bookmark = (await BookmarksService.delete({
+          cookId: this.cook.id,
+          userId: this.$store.state.user.id
+        })).data
+        this.isBookmarked = !!bookmark
+      } catch (err) {
+        console.log(err)
+      }
     }
   }
 }
